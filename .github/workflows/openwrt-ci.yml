@@ -77,11 +77,11 @@ jobs:
           # 
           # 无论你想要对固件进行怎样的定制, 都需要且只需要修改 EOF 回环内的内容.
           # 
-          # 编译x64固件:
+          # 编译newifi3:
           cat >> .config <<EOF
-          CONFIG_TARGET_armvirt=y
-          CONFIG_TARGET_armvirt_64=y
-          CONFIG_TARGET_armvirt_64_Default=y
+          CONFIG_TARGET_ramips=y
+          CONFIG_TARGET_rampis_DEVICE_d-team_newifi-d2=y
+          CONFIG_TARGET_BOARD="rampis"
           EOF
           # 固件压缩, 编译ext4格式固件
           cat >> .config <<EOF
@@ -108,13 +108,13 @@ jobs:
           CONFIG_PACKAGE_kmod-fs-squashfs=y
           EOF
           # USB3.0支持:
-          # cat >> .config <<EOF
-          # CONFIG_PACKAGE_kmod-usb-ohci=y
-          # CONFIG_PACKAGE_kmod-usb-ohci-pci=y
-          # CONFIG_PACKAGE_kmod-usb2=y
-          # CONFIG_PACKAGE_kmod-usb2-pci=y
-          # CONFIG_PACKAGE_kmod-usb3=y
-          # EOF
+          cat >> .config <<EOF
+          CONFIG_PACKAGE_kmod-usb-ohci=y
+          CONFIG_PACKAGE_kmod-usb-ohci-pci=y
+          CONFIG_PACKAGE_kmod-usb2=y
+          CONFIG_PACKAGE_kmod-usb2-pci=y
+          CONFIG_PACKAGE_kmod-usb3=y
+          EOF
           # 常用LuCI插件选择, 主要定制passwall与ssr-plus
           cat >> .config <<EOF
           # CONFIG_PACKAGE_luci-app-adbyby-plus=y
@@ -126,34 +126,34 @@ jobs:
           # CONFIG_PACKAGE_luci-app-minidlna=y
           # CONFIG_PACKAGE_luci-app-openvpn=y
           # CONFIG_PACKAGE_luci-app-openvpn-server=y
-          CONFIG_PACKAGE_luci-app-passwall=y
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ipt2socks=y
+          #CONFIG_PACKAGE_luci-app-passwall=y
+          #CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ipt2socks=y
           # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks is not set
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR=y
+          #CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR=y
           # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_socks is not set
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR_socks=y
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray=y
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan=y
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Brook=y
+          #CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR_socks=y
+          #CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray=y
+          #CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan=y
+          #CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Brook=y
           # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_kcptun is not set
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_haproxy=y
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ChinaDNS_NG=y
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_pdnsd=y
-          CONFIG_PACKAGE_luci-app-passwall_INCLUDE_dns2socks=y
+          #CONFIG_PACKAGE_luci-app-passwall_INCLUDE_haproxy=y
+          #CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ChinaDNS_NG=y
+          #CONFIG_PACKAGE_luci-app-passwall_INCLUDE_pdnsd=y
+          #CONFIG_PACKAGE_luci-app-passwall_INCLUDE_dns2socks=y
           # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_v2ray-plugin is not set
           # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_simple-obfs is not set
           # CONFIG_PACKAGE_luci-app-qbittorrent=y
-          CONFIG_PACKAGE_luci-app-ssr-plus=y
-          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks=y
-          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Simple_obfs=y
-          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray_plugin=y
-          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y
-          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan=y
+          #CONFIG_PACKAGE_luci-app-ssr-plus=y
+          #CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks=y
+          #CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Simple_obfs=y
+          #CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray_plugin=y
+          #CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y
+          #CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan=y
           # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Kcptun is not set
-          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Server=y
-          CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Socks=y
+          #CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Server=y
+          #CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Socks=y
           # CONFIG_PACKAGE_luci-app-ttyd=y
-          CONFIG_PACKAGE_luci-app-v2ray-server=y
+          #CONFIG_PACKAGE_luci-app-v2ray-server=y
           # CONFIG_PACKAGE_luci-app-verysync=y
           # CONFIG_PACKAGE_luci-app-webadmin=y
           # CONFIG_PACKAGE_luci-app-wireguard=y
@@ -161,7 +161,7 @@ jobs:
           EOF
           # LuCI主题:
           cat >> .config <<EOF
-          # CONFIG_PACKAGE_luci-theme-argon-dark-mod=y
+          CONFIG_PACKAGE_luci-theme-argon-dark-mod=y
           # CONFIG_PACKAGE_luci-theme-argon-light-mod=y
           # CONFIG_PACKAGE_luci-theme-material=y
           # CONFIG_PACKAGE_luci-theme-netgear=y
